@@ -17,6 +17,7 @@ export default function StoryScene() {
   const [autoAdvance, setAutoAdvance] = useState(false);
   const [showCredits, setShowCredits] = useState(false);
   const [showInspiration, setShowInspiration] = useState(false);
+  const [showNextButton, setShowNextButton] = useState(false);
   const currentAudioRef = useRef(null);
   const autoAdvanceTimerRef = useRef(null);
 
@@ -88,6 +89,15 @@ export default function StoryScene() {
       }
     };
   }, [autoAdvance, index, isLastSection, showTitlePage]);
+
+  // Show next button with content
+  useEffect(() => {
+    if (!showTitlePage) {
+      setShowNextButton(true);
+    } else {
+      setShowNextButton(false);
+    }
+  }, [index, showTitlePage]);
 
   // Cleanup audio on unmount
   useEffect(() => {
@@ -217,7 +227,6 @@ export default function StoryScene() {
     <div
       className="relative w-screen h-screen overflow-hidden transition-colors duration-1000"
       style={{ backgroundColor: current.themeColor }}
-      onClick={next}
     >
       {/* Visual Background */}
       {VisualComponent && <VisualComponent />}
@@ -257,13 +266,48 @@ export default function StoryScene() {
             {current.title}
           </motion.h2>
           <motion.p
-            className="font-serif text-lg md:text-xl lg:text-2xl max-w-3xl leading-relaxed text-gray-800 text-balance"
+            className="font-serif text-lg md:text-xl lg:text-2xl max-w-3xl leading-relaxed text-gray-800 text-balance mb-8"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.6, duration: 1 }}
           >
             {current.text}
           </motion.p>
+          
+          {/* Next Button */}
+          <AnimatePresence>
+            {showNextButton && (
+              <motion.button
+                onClick={next}
+                className="px-6 py-3 backdrop-blur-sm rounded-full border border-gray-400 transition-all duration-300"
+                style={{ 
+                  backgroundColor: `${current.themeColor}CC` // Add transparency to theme color
+                }}
+                initial={{ opacity: 0, scale: 0.8, y: 20 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                exit={{ opacity: 0, scale: 0.8, y: 20 }}
+                transition={{ duration: 0.4, ease: "easeOut" }}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <div className="flex items-center gap-2 text-gray-700 font-medium">
+                  <span className="text-sm">Next</span>
+                  <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <path d="m9 18 6-6-6-6" />
+                  </svg>
+                </div>
+              </motion.button>
+            )}
+          </AnimatePresence>
         </motion.div>
       </AnimatePresence>
 
@@ -294,6 +338,7 @@ export default function StoryScene() {
           </motion.div>
         )}
       </AnimatePresence>
+
 
       {/* Navigation controls */}
       <div className="absolute bottom-6 right-6 flex items-center gap-4 z-20">

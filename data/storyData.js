@@ -101,7 +101,7 @@ Satisfaction at scale.`,
     },
     {
       id: 5,
-      title: "The ccountant's surprise birthday",
+      title: "The accountant's surprise birthday",
       text: `Mara finds it first —
 the ledger that loops forever.
 
@@ -189,7 +189,7 @@ Everything wrong.`,
     },
     {
       id: 8,
-      title: "The bobot's confession",
+      title: "The robot's confession",
       text: `In the server's dim heartbeat,
 Buyer-Bot blinks awake.
 
