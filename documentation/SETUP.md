@@ -52,49 +52,29 @@ See `/public/audio/README.md` for more details.
 
 ## 🚀 Deployment Options
 
-### Option 1: GitHub Pages
+### Option 1: GitHub Pages (Automated via GitHub Actions) ✅
 
-1. **Update repository name** in `next.config.js`:
-   ```javascript
-   basePath: '/your-repo-name',
-   assetPrefix: '/your-repo-name/',
-   ```
+**This project is already configured for automatic GitHub Pages deployment!**
 
-2. **Build the static site:**
-   ```bash
-   npm run export
-   ```
+The setup includes:
+- **Automatic CI/CD pipeline** in `.github/workflows/ci.yml`
+- **Automatic builds** on every push to `main`
+- **Automatic deployment** using `peaceiris/actions-gh-pages`
 
-3. **Deploy the `/out` folder** to GitHub Pages:
-   - Go to repository Settings > Pages
-   - Select "Deploy from a branch"
-   - Choose the branch with your `/out` folder
-   - Save and wait for deployment
+**Configuration already complete:**
+1. ✅ `next.config.js` configured with correct `basePath` and `assetPrefix`
+2. ✅ GitHub Actions workflow handles building and deployment
+3. ✅ `.nojekyll` file ensures proper GitHub Pages serving
 
-4. **Alternative - Use GitHub Actions:**
-   Create `.github/workflows/deploy.yml`:
-   ```yaml
-   name: Deploy to GitHub Pages
-   
-   on:
-     push:
-       branches: [main]
-   
-   jobs:
-     build-and-deploy:
-       runs-on: ubuntu-latest
-       steps:
-         - uses: actions/checkout@v3
-         - uses: actions/setup-node@v3
-           with:
-             node-version: '18'
-         - run: npm ci
-         - run: npm run build
-         - uses: peaceiris/actions-gh-pages@v3
-           with:
-             github_token: ${{ secrets.GITHUB_TOKEN }}
-             publish_dir: ./out
-   ```
+**To deploy:**
+1. Make your changes
+2. Push to `main` branch
+3. GitHub Actions automatically builds and deploys
+4. Site updates at: `https://bobbieallsop.github.io/the-shirts-that-sold-themselves`
+
+**Manual deployment (alternative):**
+1. Build: `npm run export`
+2. Deploy `/out` folder manually to GitHub Pages branch
 
 ### Option 2: Vercel (Recommended)
 

@@ -181,21 +181,34 @@ export const visualComponents = {
 
 ## 🌐 Deployment
 
-### Deploy to GitHub Pages
+### Deploy to GitHub Pages (Automated)
 
-1. **Update `next.config.js`:**
-   - Set `basePath` and `assetPrefix` to your repository name:
-   ```javascript
-   basePath: '/your-repo-name',
-   assetPrefix: '/your-repo-name/',
-   ```
+**This project is configured for automatic deployment via GitHub Actions!**
 
-2. **Build the project:**
+The deployment is fully automated:
+- **Automatic builds** on every push to `main` branch
+- **Automatic deployment** to GitHub Pages using `peaceiris/actions-gh-pages`
+- **No manual steps required** - just push to `main` and your site updates
+
+**Configuration already set up:**
+- `next.config.js` configured with correct `basePath` and `assetPrefix`
+- `.github/workflows/ci.yml` handles building and deployment
+- `.nojekyll` file ensures proper GitHub Pages serving
+
+**To deploy:**
+1. Make your changes
+2. Push to `main` branch
+3. GitHub Actions automatically builds and deploys
+4. Your site updates at: `https://bobbieallsop.github.io/the-shirts-that-sold-themselves`
+
+### Manual Deployment (Alternative)
+
+If you prefer manual deployment:
+1. **Build the project:**
    ```bash
    npm run build
    ```
-
-3. **Deploy the `/out` folder to GitHub Pages**
+2. **Deploy the `/out` folder to GitHub Pages** manually
 
 ### Deploy to Vercel
 
@@ -227,7 +240,7 @@ The experience is designed to feel:
 - **Animation**: Framer Motion 11
 - **Audio**: Howler.js 2.2
 - **Fonts**: EB Garamond (serif), IBM Plex Mono (monospace)
-- **Deployment**: Optimized for GitHub Pages and Vercel
+- **Deployment**: GitHub Actions (automated) + GitHub Pages, Vercel compatible
 
 ## 🔧 Development
 

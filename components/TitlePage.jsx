@@ -78,7 +78,7 @@ export default function TitlePage({ onStart }) {
         animate={{ opacity: 0.6 }}
         transition={{ delay: 1.5, duration: 1 }}
       >
-        ← → to navigate • space to advance • a for auto • m to mute
+        ← → to navigate • space to advance
       </motion.div>
 
       {/* Decorative elements */}

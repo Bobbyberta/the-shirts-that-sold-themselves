@@ -14,12 +14,10 @@ export default function StoryScene() {
   const [index, setIndex] = useState(-1); // Start with title page
   const [showLog, setShowLog] = useState(false);
   const [isMuted, setIsMuted] = useState(false);
-  const [autoAdvance, setAutoAdvance] = useState(false);
   const [showCredits, setShowCredits] = useState(false);
   const [showInspiration, setShowInspiration] = useState(false);
   const [showNextButton, setShowNextButton] = useState(false);
   const currentAudioRef = useRef(null);
-  const autoAdvanceTimerRef = useRef(null);
 
   const current = index >= 0 ? storySections[index] : null;
   const isLastSection = index === storySections.length - 1;
@@ -75,20 +73,6 @@ export default function StoryScene() {
     };
   }, [index, current?.audio, isMuted, showTitlePage]);
 
-  // Handle auto-advance
-  useEffect(() => {
-    if (autoAdvance && !isLastSection && !showTitlePage) {
-      autoAdvanceTimerRef.current = setTimeout(() => {
-        next();
-      }, 8000);
-    }
-
-    return () => {
-      if (autoAdvanceTimerRef.current) {
-        clearTimeout(autoAdvanceTimerRef.current);
-      }
-    };
-  }, [autoAdvance, index, isLastSection, showTitlePage]);
 
   // Show next button with content
   useEffect(() => {
@@ -163,10 +147,6 @@ export default function StoryScene() {
       } else if (e.key === "ArrowLeft") {
         e.preventDefault();
         previous();
-      } else if (e.key === "a") {
-        setAutoAdvance((prev) => !prev);
-      } else if (e.key === "m") {
-        setIsMuted((prev) => !prev);
       }
     };
 
@@ -234,19 +214,7 @@ export default function StoryScene() {
       {/* Cursor Trail for specific sections */}
       {showCursorTrail && <CursorTrail />}
 
-      {/* Sound Control */}
-      <SoundControl isMuted={isMuted} onToggle={handleToggleMute} />
 
-      {/* Auto-advance indicator */}
-      {autoAdvance && (
-        <motion.div
-          className="fixed top-6 left-6 z-50 px-3 py-2 bg-neonmint/20 backdrop-blur-sm rounded-full text-xs font-mono text-gray-700"
-          initial={{ opacity: 0, x: -20 }}
-          animate={{ opacity: 1, x: 0 }}
-        >
-          auto-advance: on
-        </motion.div>
-      )}
 
       {/* Main Content */}
       <AnimatePresence mode="wait">
@@ -340,38 +308,7 @@ export default function StoryScene() {
       </AnimatePresence>
 
 
-      {/* Navigation controls */}
-      <div className="absolute bottom-6 right-6 flex items-center gap-4 z-20">
-        <motion.button
-          onClick={(e) => {
-            e.stopPropagation();
-            setAutoAdvance((prev) => !prev);
-          }}
-          className="px-3 py-1 text-xs font-mono text-gray-600 hover:text-gray-900 transition-colors"
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
-        >
-          auto: {autoAdvance ? "on" : "off"}
-        </motion.button>
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 0.4 }}
-          transition={{ delay: 3 }}
-          className="text-xs text-gray-600 font-mono select-none"
-        >
-          {index + 1} / {storySections.length}
-        </motion.div>
-      </div>
 
-      {/* Keyboard shortcuts hint */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 0.3 }}
-        transition={{ delay: 5 }}
-        className="absolute top-6 left-1/2 transform -translate-x-1/2 text-xs text-gray-600 font-mono select-none"
-      >
-        ← → to navigate • space to advance • a for auto • m to mute
-      </motion.div>
     </div>
   );
 }
