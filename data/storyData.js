@@ -2,12 +2,16 @@
 export const storySections = [
     {
       id: 1,
-      title: "The Shirts That Sold Themselves",
-      text: `2035. Print-factories hummed through midnight,
-weaving pixels into fabric.
-
-No one designed the shirts.
-They designed each other.`,
+      title: "The Machines That Dream in Cotton",
+      text: `2035. Dawn breaks over print-factories,
+      humming with digital dreams.
+      
+      A bot dreams in cotton.
+      Another bot nods approval.
+      
+      The machines whisper:
+      Ready to weave
+      tomorrow's wardrobe.`,
       visuals: ["weave-animation"],
       audio: "machine_hum.mp3",
       machineLogs: [
@@ -19,7 +23,7 @@ They designed each other.`,
     },
     {
       id: 2,
-      title: "The Little Buyer That Couldn't Stop Buying",
+      title: "The Bot with Bottomless Pockets",
       text: `Inside the network,
 a cheerful algorithm named Buyer-Bot
 whispers: Yes, I'll take more.
@@ -55,10 +59,7 @@ singing the same unsung song.
 Air warm with starch and static.
 A cathedral of shirts,
 praying to a god of inventory.
-
-Ceiling lights blink
-like distant stars —
-lonely and fluorescent.`,
+`,
       visuals: ["stacking-boxes"],
       audio: "low_hum.mp3",
       machineLogs: [
@@ -70,7 +71,7 @@ lonely and fluorescent.`,
     },
     {
       id: 4,
-      title: "The Invisible Customers",
+      title: "Signatures Written in Light",
       text: `Drones still come,
 obedient as bees.
 
@@ -160,7 +161,7 @@ the water still runs.`,
     },
     {
       id: 7,
-      title: "The Grown-Ups Arrive",
+      title: "The Gray Rain of Auditors",
       text: `Auditors arrive
 like rain clouds —
 polite, gray, inevitable.
@@ -220,23 +221,18 @@ The innocence: machine.`,
       id: 9,
       title: "The City of Empty Closets",
       text: `News ripples outward.
-Markets dip.
-Memes bloom.
-
-People joke about shirts
-no one wore,
-closets that never filled,
-jobs that never existed.
+People laugh about shirts
+that laundered themselves,
+about money that took showers.
 
 The city looks the same —
-but beneath ads,
-beneath neon slogans,
-everyone wonders:
+but beneath neon slogans,
+everyone whispers:
 
-Had they ever truly bought anything?
-
-Was value just a story
-told in binary and cotton?`,
+Billions washed clean
+through cotton and code.
+Dirty money baptized
+in digital fonts.`,
       visuals: ["slow-pan"],
       audio: "warehouse_echo.mp3",
       machineLogs: [
@@ -252,14 +248,10 @@ told in binary and cotton?`,
       text: `Weeks later,
 the warehouse stands hollow.
 
-Mara walks its aisles,
-footsteps soft on abandoned fabric.
-
-She finds one shirt,
+Mara finds one shirt,
 hand-drawn —
 a crooked sun,
-a smiling face,
-ink slightly bled.
+a smiling face.
 
 Tag reads: Prototype 001 — Human Made.
 
@@ -267,12 +259,10 @@ She presses it to her chest.
 Cotton cool.
 Silence warm.
 
-Outside, wind carries
-threads of dust into sky.
-
-For a moment,
-it looks like the city
-is finally doing its laundry.`,
+The jokes have stopped.
+But somewhere,
+the city still whispers
+about money that took showers.`,
       visuals: ["fade-to-white"],
       audio: "soft_end.mp3",
       machineLogs: [
