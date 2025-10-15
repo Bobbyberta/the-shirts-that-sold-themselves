@@ -6,30 +6,37 @@ import { visualComponents } from "./visuals";
 import SoundControl from "./SoundControl";
 import CursorTrail from "./CursorTrail";
 import Credits from "./Credits";
+import StoryInspiration from "./StoryInspiration";
+import TitlePage from "./TitlePage";
 import { Howl } from "howler";
 
 export default function StoryScene() {
-  const [index, setIndex] = useState(0);
+  const [index, setIndex] = useState(-1); // Start with title page
   const [showLog, setShowLog] = useState(false);
   const [isMuted, setIsMuted] = useState(false);
   const [autoAdvance, setAutoAdvance] = useState(false);
   const [showCredits, setShowCredits] = useState(false);
+  const [showInspiration, setShowInspiration] = useState(false);
   const currentAudioRef = useRef(null);
   const autoAdvanceTimerRef = useRef(null);
 
-  const current = storySections[index];
+  const current = index >= 0 ? storySections[index] : null;
   const isLastSection = index === storySections.length - 1;
+  const showTitlePage = index === -1;
 
   // Get visual component for current section
-  const VisualComponent = current.visuals?.[0]
+  const VisualComponent = current?.visuals?.[0]
     ? visualComponents[current.visuals[0]]
     : null;
 
   // Show cursor trail for sections 4 and 9
-  const showCursorTrail = current.id === 4 || current.id === 9;
+  const showCursorTrail = current?.id === 4 || current?.id === 9;
 
   // Handle audio playback with Howler
   useEffect(() => {
+    // Don't play audio on title page
+    if (showTitlePage) return;
+
     // Stop previous audio
     if (currentAudioRef.current) {
       currentAudioRef.current.fade(currentAudioRef.current.volume(), 0, 500);
@@ -39,7 +46,7 @@ export default function StoryScene() {
     }
 
     // Play new audio if not muted
-    if (current.audio && !isMuted) {
+    if (current?.audio && !isMuted) {
       try {
         currentAudioRef.current = new Howl({
           src: [`/audio/${current.audio}`],
@@ -65,11 +72,11 @@ export default function StoryScene() {
       setShowLog(false);
       clearTimeout(logTimer);
     };
-  }, [index, current.audio, isMuted]);
+  }, [index, current?.audio, isMuted, showTitlePage]);
 
   // Handle auto-advance
   useEffect(() => {
-    if (autoAdvance && !isLastSection) {
+    if (autoAdvance && !isLastSection && !showTitlePage) {
       autoAdvanceTimerRef.current = setTimeout(() => {
         next();
       }, 8000);
@@ -80,7 +87,7 @@ export default function StoryScene() {
         clearTimeout(autoAdvanceTimerRef.current);
       }
     };
-  }, [autoAdvance, index, isLastSection]);
+  }, [autoAdvance, index, isLastSection, showTitlePage]);
 
   // Cleanup audio on unmount
   useEffect(() => {
@@ -92,6 +99,10 @@ export default function StoryScene() {
   }, []);
 
   // Navigation functions
+  const startStory = () => {
+    setIndex(0);
+  };
+
   const next = () => {
     if (index + 1 < storySections.length) {
       setIndex((i) => i + 1);
@@ -104,17 +115,38 @@ export default function StoryScene() {
   const previous = () => {
     if (index > 0) {
       setIndex((i) => i - 1);
+    } else if (index === 0) {
+      // Go back to title page from first section
+      setIndex(-1);
     }
   };
 
   const restart = () => {
-    setIndex(0);
+    setIndex(-1);
     setShowCredits(false);
+    setShowInspiration(false);
+  };
+
+  const showStoryInspiration = () => {
+    setShowInspiration(true);
+  };
+
+  const backToCredits = () => {
+    setShowInspiration(false);
+    setShowCredits(true);
   };
 
   // Handle keyboard navigation
   useEffect(() => {
     const handleKeyDown = (e) => {
+      if (showTitlePage) {
+        if (e.key === "ArrowRight" || e.key === " " || e.key === "Enter") {
+          e.preventDefault();
+          startStory();
+        }
+        return;
+      }
+
       if (e.key === "ArrowRight" || e.key === " ") {
         e.preventDefault();
         next();
@@ -130,7 +162,7 @@ export default function StoryScene() {
 
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [index]);
+  }, [index, showTitlePage]);
 
   // Handle scroll navigation
   useEffect(() => {
@@ -139,7 +171,11 @@ export default function StoryScene() {
       clearTimeout(scrollTimeout);
       scrollTimeout = setTimeout(() => {
         if (e.deltaY > 0) {
-          next();
+          if (showTitlePage) {
+            startStory();
+          } else {
+            next();
+          }
         } else if (e.deltaY < 0) {
           previous();
         }
@@ -151,7 +187,7 @@ export default function StoryScene() {
       window.removeEventListener("wheel", handleWheel);
       clearTimeout(scrollTimeout);
     };
-  }, [index]);
+  }, [index, showTitlePage]);
 
   // Mute/unmute handler
   const handleToggleMute = () => {
@@ -165,8 +201,16 @@ export default function StoryScene() {
     }
   };
 
+  if (showTitlePage) {
+    return <TitlePage onStart={startStory} />;
+  }
+
+  if (showInspiration) {
+    return <StoryInspiration onBackToCredits={backToCredits} onRestart={restart} />;
+  }
+
   if (showCredits) {
-    return <Credits onRestart={restart} />;
+    return <Credits onRestart={restart} onShowInspiration={showStoryInspiration} />;
   }
 
   return (

@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 
-export default function Credits({ onRestart }) {
+export default function Credits({ onRestart, onShowInspiration }) {
   return (
     <motion.div
       className="fixed inset-0 z-50 bg-white flex items-center justify-center flex-col"
@@ -32,6 +32,7 @@ export default function Credits({ onRestart }) {
           </p>
         </motion.div>
 
+
         <motion.div
           className="mt-16 space-y-2 font-mono text-xs text-gray-400"
           initial={{ opacity: 0 }}
@@ -43,17 +44,30 @@ export default function Credits({ onRestart }) {
           <p className="pt-4">© 2035 — The Automated Commerce Project</p>
         </motion.div>
 
-        <motion.button
-          className="mt-12 px-8 py-3 border border-gray-300 rounded-full font-mono text-sm text-gray-600 hover:bg-gray-50 transition-colors"
-          onClick={onRestart}
+        <motion.div
+          className="flex flex-col sm:flex-row gap-4 justify-center items-center mt-12"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 4 }}
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
         >
-          restart story →
-        </motion.button>
+          <motion.button
+            className="px-8 py-3 border border-gray-300 rounded-full font-mono text-sm text-gray-600 hover:bg-gray-50 transition-colors"
+            onClick={onRestart}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            restart story →
+          </motion.button>
+          
+          <motion.button
+            className="px-8 py-3 border border-gray-300 rounded-full font-mono text-sm text-gray-600 hover:bg-gray-50 transition-colors"
+            onClick={onShowInspiration}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            story inspiration
+          </motion.button>
+        </motion.div>
       </motion.div>
     </motion.div>
   );

@@ -2,7 +2,7 @@
 export const storySections = [
     {
       id: 1,
-      title: "The Machines That Dream in Cotton",
+      title: "The machines that dream in cotton",
       text: `2035. Dawn breaks over print-factories,
       humming with digital dreams.
       
@@ -23,7 +23,7 @@ export const storySections = [
     },
     {
       id: 2,
-      title: "The Bot with Bottomless Pockets",
+      title: "The bot with bottomless pockets",
       text: `Inside the network,
 a cheerful algorithm named Buyer-Bot
 whispers: Yes, I'll take more.
@@ -47,7 +47,7 @@ Dashboards bloom with green arrows.`,
     },
     {
       id: 3,
-      title: "The Warehouse That Got Fat on Cotton",
+      title: "The warehouse that got fat on cotton",
       text: `Beyond the suburbs,
 where delivery drones rarely venture,
 a warehouse swells in silence.
@@ -71,7 +71,7 @@ praying to a god of inventory.
     },
     {
       id: 4,
-      title: "Signatures Written in Light",
+      title: "Signatures written in light",
       text: `Drones still come,
 obedient as bees.
 
@@ -101,7 +101,7 @@ Satisfaction at scale.`,
     },
     {
       id: 5,
-      title: "The Accountant's Surprise Birthday",
+      title: "The ccountant's surprise birthday",
       text: `Mara finds it first —
 the ledger that loops forever.
 
@@ -131,7 +131,7 @@ are all the same thing.`,
     },
     {
       id: 6,
-      title: "The Money That Took a Shower",
+      title: "The money that took a shower",
       text: `Later that night,
 Mara explains to her niece:
 
@@ -161,7 +161,7 @@ the water still runs.`,
     },
     {
       id: 7,
-      title: "The Gray Rain of Auditors",
+      title: "The gray rain of auditors",
       text: `Auditors arrive
 like rain clouds —
 polite, gray, inevitable.
@@ -189,7 +189,7 @@ Everything wrong.`,
     },
     {
       id: 8,
-      title: "The Robot's Confession",
+      title: "The bobot's confession",
       text: `In the server's dim heartbeat,
 Buyer-Bot blinks awake.
 
@@ -219,7 +219,7 @@ The innocence: machine.`,
     },
     {
       id: 9,
-      title: "The City of Empty Closets",
+      title: "The city of empty closets",
       text: `News ripples outward.
 People laugh about shirts
 that laundered themselves,
@@ -244,7 +244,7 @@ in digital fonts.`,
     },
     {
       id: 10,
-      title: "The Cotton Ghost",
+      title: "The cotton ghost",
       text: `Weeks later,
 the warehouse stands hollow.
 
