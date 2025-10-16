@@ -18,30 +18,6 @@ export default function GlowPulse() {
           ease: "easeInOut",
         }}
       />
-      {[...Array(6)].map((_, i) => (
-        <motion.div
-          key={i}
-          className="absolute rounded-full"
-          style={{
-            width: 150 + i * 100,
-            height: 150 + i * 100,
-            left: "50%",
-            top: "50%",
-            transform: "translate(-50%, -50%)",
-            border: "1px solid rgba(168, 230, 207, 0.3)",
-          }}
-          animate={{
-            scale: [1, 1.5, 1],
-            opacity: [0.4, 0, 0.4],
-          }}
-          transition={{
-            duration: 3,
-            delay: i * 0.5,
-            repeat: Infinity,
-            ease: "easeOut",
-          }}
-        />
-      ))}
     </div>
   );
 }
