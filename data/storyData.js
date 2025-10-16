@@ -6,7 +6,7 @@ export const storySections = [
       text: `2035. Dawn breaks over print-factories,
       humming with digital dreams.
       
-      A bot dreams in cotton.
+      A bot collects the insiration.
       Another bot nods approval.
       
       The machines whisper:
