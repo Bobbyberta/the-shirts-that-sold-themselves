@@ -20,31 +20,32 @@ export default function StoryInspiration({ onBackToCredits, onRestart }) {
     >
       <div className="min-h-full flex items-center justify-center py-8">
         <motion.div
-          className="text-center space-y-8 max-w-4xl px-6"
+          className="w-full max-w-6xl mx-auto px-4 lg:px-8 flex flex-col items-center"
           initial={{ y: 50, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ delay: 1, duration: 1.5 }}
         >
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1.5 }}
-        >
-          <h1 className="font-serif text-3xl md:text-5xl text-gray-800 mb-4">
-            Story Inspiration
-          </h1>
-          <p className="font-mono text-sm text-gray-500 italic">
-            The Vision Behind The Cotton Ghost
-          </p>
-        </motion.div>
+          <div className="w-full max-w-prose space-y-8">
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 1.5 }}
+            >
+              <h1 className="font-serif text-3xl md:text-5xl text-gray-800 mb-4 text-left">
+                Story Inspiration
+              </h1>
+              <p className="font-mono text-sm text-gray-500 italic text-left">
+                The Vision Behind The Cotton Ghost
+              </p>
+            </motion.div>
 
-        <motion.div
-          className="mt-12"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 2.5 }}
-        >
-          <div className="bg-gray-50 border-l-4 border-gray-300 p-8 rounded-r-lg text-left">
+            <motion.div
+              className="mt-12"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 2.5 }}
+            >
+              <div className="bg-gray-50 border-l-4 border-gray-300 p-8 rounded-r-lg text-left">
             <motion.p 
               className="font-serif text-gray-700 leading-relaxed text-base mb-6"
               initial={{ opacity: 0 }}
@@ -85,7 +86,7 @@ export default function StoryInspiration({ onBackToCredits, onRestart }) {
         </motion.div>
 
         <motion.div
-          className="flex flex-col sm:flex-row gap-4 justify-center items-center"
+          className="flex flex-col sm:flex-row gap-4 justify-start items-start"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 4.5 }}
@@ -108,6 +109,7 @@ export default function StoryInspiration({ onBackToCredits, onRestart }) {
             restart story →
           </motion.button>
         </motion.div>
+          </div>
         </motion.div>
       </div>
     </motion.div>

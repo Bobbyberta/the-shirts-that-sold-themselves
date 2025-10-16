@@ -220,13 +220,15 @@ export default function StoryScene() {
       <AnimatePresence mode="wait">
         <motion.div
           key={current.id}
-          className="absolute inset-0 flex flex-col items-start justify-center p-6 text-left z-10"
+          className="absolute inset-0 flex flex-col items-center justify-center p-6 text-left z-10"
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0, transition: { duration: 1.2 } }}
           exit={{ opacity: 0, y: -50, transition: { duration: 0.8 } }}
         >
+          <div className="w-full max-w-6xl mx-auto px-4 lg:px-8 flex flex-col items-center">
+            <div className="w-full max-w-prose">
           <motion.h2
-            className="font-serif text-3xl md:text-5xl lg:text-6xl mb-6 max-w-4xl"
+            className="font-serif text-xl md:text-2xl lg:text-3xl mb-6 font-bold text-left"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.3, duration: 1 }}
@@ -234,7 +236,7 @@ export default function StoryScene() {
             {current.title}
           </motion.h2>
           <motion.p
-            className="font-serif text-lg md:text-xl lg:text-2xl max-w-3xl leading-relaxed text-gray-800 text-balance mb-8"
+            className="font-serif text-lg md:text-xl lg:text-2xl leading-relaxed text-gray-800 text-balance mb-8 text-left"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.6, duration: 1 }}
@@ -276,6 +278,8 @@ export default function StoryScene() {
               </motion.button>
             )}
           </AnimatePresence>
+            </div>
+          </div>
         </motion.div>
       </AnimatePresence>
 
@@ -284,7 +288,7 @@ export default function StoryScene() {
         {showLog && current.machineLogs && (
           <motion.div
             key={`logs-${current.id}`}
-            className="absolute bottom-6 left-6 text-left font-mono text-sm z-20"
+            className="absolute bottom-6 left-6 lg:left-1/2 lg:transform lg:-translate-x-1/2 lg:max-w-6xl lg:w-full lg:px-4 text-left font-mono text-sm z-20"
             style={{ color: "rgba(168, 230, 207, 0.8)" }}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}

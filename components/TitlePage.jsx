@@ -14,66 +14,68 @@ export default function TitlePage({ onStart }) {
 
       {/* Main title content */}
       <motion.div
-        className="text-center max-w-4xl mx-auto px-6 z-10"
+        className="w-full max-w-6xl mx-auto px-4 lg:px-8 flex flex-col items-center z-10"
         initial={{ opacity: 0, y: 50 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1.2 }}
       >
-        {/* Main title */}
-        <motion.h1
-          className="font-serif text-5xl md:text-7xl lg:text-8xl mb-8 text-gray-900"
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ delay: 0.3, duration: 1 }}
-        >
-          The Shirts That Sold Themselves
-        </motion.h1>
+        <div className="w-full max-w-prose">
+          {/* Main title */}
+          <motion.h1
+            className="font-serif text-5xl md:text-7xl lg:text-8xl mb-8 text-gray-900 text-left"
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 0.3, duration: 1 }}
+          >
+            The Shirts That Sold Themselves
+          </motion.h1>
 
-        {/* Subtitle */}
-        <motion.p
-          className="font-serif text-lg md:text-xl lg:text-2xl text-gray-700 mb-12 leading-relaxed"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.6, duration: 1 }}
-        >
-          A digital story about machines, money, and the cotton that connected them
-        </motion.p>
-
-        {/* Play button */}
-        <motion.button
-          onClick={onStart}
-          className="group relative px-12 py-4 bg-gray-900 text-white font-serif text-lg md:text-xl rounded-full hover:bg-gray-800 transition-all duration-300 shadow-lg hover:shadow-xl"
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ delay: 0.9, duration: 0.8 }}
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
-        >
-          <motion.span
-            className="flex items-center gap-3"
+          {/* Subtitle */}
+          <motion.p
+            className="font-serif text-lg md:text-xl lg:text-2xl text-gray-700 mb-12 leading-relaxed text-left"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ delay: 1.1 }}
+            transition={{ delay: 0.6, duration: 1 }}
           >
-            <svg
-              className="w-6 h-6 group-hover:scale-110 transition-transform duration-300"
-              fill="currentColor"
-              viewBox="0 0 20 20"
+            A digital story about machines, money, and the cotton that connected them
+          </motion.p>
+
+          {/* Play button */}
+          <motion.button
+            onClick={onStart}
+            className="group relative px-12 py-4 bg-gray-900 text-white font-serif text-lg md:text-xl rounded-full hover:bg-gray-800 transition-all duration-300 shadow-lg hover:shadow-xl"
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 0.9, duration: 0.8 }}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            <motion.span
+              className="flex items-center gap-3"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 1.1 }}
             >
-              <path
-                fillRule="evenodd"
-                d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z"
-                clipRule="evenodd"
-              />
-            </svg>
-            Begin Story
-          </motion.span>
-        </motion.button>
+              <svg
+                className="w-6 h-6 group-hover:scale-110 transition-transform duration-300"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+              >
+                <path
+                  fillRule="evenodd"
+                  d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z"
+                  clipRule="evenodd"
+                />
+              </svg>
+              Begin Story
+            </motion.span>
+          </motion.button>
+        </div>
       </motion.div>
 
       {/* Navigation instructions */}
       <motion.div
-        className="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-xs text-gray-600 font-mono select-none"
+        className="absolute bottom-6 left-6 lg:left-1/2 lg:transform lg:-translate-x-1/2 lg:max-w-6xl lg:w-full lg:px-4 text-xs text-gray-600 font-mono select-none"
         initial={{ opacity: 0 }}
         animate={{ opacity: 0.6 }}
         transition={{ delay: 1.5, duration: 1 }}
