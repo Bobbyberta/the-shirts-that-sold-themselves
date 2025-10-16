@@ -1,0 +1,117 @@
+# Visual Components Rules
+
+## Component Structure
+All visual components should follow this pattern:
+```jsx
+import { motion } from "framer-motion";
+
+export default function ComponentName() {
+  return (
+    <div className="absolute inset-0 overflow-hidden">
+      {/* Animation content */}
+    </div>
+  );
+}
+```
+
+## Animation Guidelines
+- **Container**: Always use `absolute inset-0 overflow-hidden`
+- **Performance**: Use `transform` and `opacity` for smooth animations
+- **Duration**: Keep animations between 2-6 seconds for loops
+- **Easing**: Use "easeInOut" for natural movement
+- **Infinite**: Use `repeat: Infinity` for continuous effects
+
+## Color Palette
+- **Primary**: #A8E6CF (mint green) for main effects
+- **Secondary**: Gray tones for subtle elements
+- **Backgrounds**: Transparent or very low opacity
+- **Borders**: rgba(168, 230, 207, 0.3) for subtle outlines
+
+## Common Patterns
+- **Radial Gradients**: `radial-gradient(circle, #A8E6CF 0%, transparent 70%)`
+- **Pulsing**: Scale and opacity animations
+- **Floating**: Transform translateY animations
+- **Rotating**: Rotate animations for mechanical effects
+- **Fading**: Opacity transitions for ghost effects
+
+## Performance Tips
+- **GPU Acceleration**: Use `transform` instead of changing layout properties
+- **Will Change**: Add `will-change: transform` for complex animations
+- **Reduce Motion**: Respect `prefers-reduced-motion` media query
+- **Frame Rate**: Target 60fps, avoid complex calculations in animations
+
+## Responsive Considerations
+- **Mobile**: Simpler animations, fewer elements
+- **Desktop**: More complex effects, higher detail
+- **Battery**: Consider power consumption on mobile devices
+- **Accessibility**: Provide alternatives for motion-sensitive users
+
+## Component-Specific Rules
+
+### GlowPulse
+- **Purpose**: Robot's confession scene
+- **Style**: Simple blue pulse, no complex elements
+- **Performance**: Single element, smooth scaling
+- **Color**: #A8E6CF with transparency
+
+### WeaveAnimation
+- **Purpose**: Cotton weaving metaphor
+- **Style**: Textile-like patterns
+- **Animation**: Continuous weaving motion
+- **Colors**: Neutral tones with subtle highlights
+
+### StackingBoxes
+- **Purpose**: Warehouse accumulation
+- **Style**: Geometric, industrial
+- **Animation**: Boxes appearing and stacking
+- **Colors**: Gray tones, warehouse aesthetic
+
+### DroneDelivery
+- **Purpose**: Delivery system metaphor
+- **Style**: Futuristic, mechanical
+- **Animation**: Drones moving and landing
+- **Colors**: Metallic tones, tech aesthetic
+
+### ConfettiGlitch
+- **Purpose**: Celebration/chaos effect
+- **Style**: Glitchy, celebratory
+- **Animation**: Particles falling with glitch effects
+- **Colors**: Bright, contrasting colors
+
+### RainAnimation
+- **Purpose**: Money laundering metaphor
+- **Style**: Water/digital rain
+- **Animation**: Falling particles
+- **Colors**: Blue tones, water-like
+
+### GreyClouds
+- **Purpose**: Auditors arriving
+- **Style**: Ominous, bureaucratic
+- **Animation**: Slow-moving clouds
+- **Colors**: Gray tones, institutional
+
+### SlowPan
+- **Purpose**: City overview
+- **Style**: Cinematic, sweeping
+- **Animation**: Slow camera movement
+- **Colors**: Urban tones, cityscape
+
+### FadeToWhite
+- **Purpose**: Story conclusion
+- **Style**: Clean, final
+- **Animation**: Gradual fade to white
+- **Colors**: White, clean, resolution
+
+## Testing Guidelines
+- **Cross-browser**: Test in Chrome, Firefox, Safari, Edge
+- **Mobile**: Test on iOS and Android devices
+- **Performance**: Monitor frame rates and memory usage
+- **Accessibility**: Test with screen readers and reduced motion
+- **Fallbacks**: Ensure graceful degradation for unsupported features
+
+## Common Issues
+- **Z-index**: Ensure proper layering with other elements
+- **Overflow**: Use `overflow-hidden` to contain animations
+- **Memory**: Clean up animations on component unmount
+- **Timing**: Coordinate with page transitions
+- **Loading**: Show loading states for complex animations

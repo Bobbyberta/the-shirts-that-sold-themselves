@@ -1,0 +1,224 @@
+# The Shirts That Sold Themselves - Cursor Rules
+
+## Project Overview
+This is an interactive digital story experience about AI, automated commerce, and the machines that dream. It's a poetic exploration of money laundering through cotton and code, told through 10 story sections with visual animations and ambient audio.
+
+## Tech Stack
+- **Framework**: Next.js with React
+- **Styling**: Tailwind CSS
+- **Animations**: Framer Motion
+- **Audio**: Howler.js
+- **Deployment**: GitHub Pages
+- **Fonts**: EB Garamond (serif), IBM Plex Mono (monospace)
+
+## Architecture
+- **Pages**: TitlePage, StoryScene, Credits, StoryInspiration
+- **Components**: Modular visual components in `/components/visuals/`
+- **Data**: Story content in `/data/storyData.js`
+- **Styling**: Global styles in `/styles/globals.css`
+
+## Design Principles
+- **Accessibility First**: Use `max-w-prose` for optimal line length (65 characters)
+- **Consistent Layout**: Centered content blocks with left-aligned text
+- **Responsive Design**: Mobile-first approach with `px-4 lg:px-8` padding
+- **Typography**: Serif for prose, monospace for machine logs
+- **Color**: Theme-based backgrounds with neutral text colors
+
+## Code Style
+- **Components**: Use functional components with hooks
+- **Animations**: Framer Motion for smooth transitions
+- **Styling**: Tailwind classes, avoid custom CSS when possible
+- **Naming**: Descriptive component and variable names
+- **Structure**: Keep components focused and modular
+
+## Story Content Guidelines
+- **Tone**: Poetic, contemplative, slightly surreal
+- **Themes**: AI consciousness, automated commerce, digital laundering
+- **Visuals**: Each section has a specific visual component
+- **Audio**: Ambient sounds that match the theme
+- **Machine Logs**: Technical, robotic language for contrast
+
+## Animation Guidelines
+- **Transitions**: Smooth, 1-2 second durations
+- **Easing**: Use "easeInOut" for natural movement
+- **Staggering**: Delay animations for sequential reveals
+- **Performance**: Keep animations lightweight and 60fps
+
+## Accessibility Requirements
+- **Line Length**: Always use `max-w-prose` for text content
+- **Color Contrast**: Ensure sufficient contrast ratios
+- **Keyboard Navigation**: Support arrow keys and spacebar
+- **Screen Readers**: Use semantic HTML and ARIA labels
+- **Focus States**: Visible focus indicators
+
+## File Organization
+- **Components**: Keep in `/components/` with descriptive names
+- **Visuals**: Animation components in `/components/visuals/`
+- **Data**: Story content in `/data/storyData.js`
+- **Styles**: Global styles only, use Tailwind for component styles
+- **Assets**: Audio files in `/public/audio/`
+
+## Common Patterns
+- **Layout**: `w-full max-w-6xl mx-auto px-4 lg:px-8 flex flex-col items-center`
+- **Prose**: `w-full max-w-prose` wrapper with `text-left`
+- **Buttons**: Rounded, hover effects, consistent styling
+- **Animations**: `initial`, `animate`, `transition` props
+- **Responsive**: Mobile-first breakpoints (`md:`, `lg:`)
+
+## Performance Considerations
+- **Images**: Optimize and use Next.js Image component
+- **Audio**: Lazy load with Howler.js
+- **Animations**: Use `transform` and `opacity` for performance
+- **Bundle Size**: Keep dependencies minimal
+- **Loading**: Show loading states for audio
+
+## Testing & Quality
+- **Linting**: ESLint with Next.js config
+- **Formatting**: Prettier for consistent code style
+- **Accessibility**: Test with screen readers
+- **Performance**: Monitor Core Web Vitals
+- **Cross-browser**: Test on major browsers
+
+## Deployment
+- **Platform**: GitHub Pages with Next.js static export
+- **CI/CD**: GitHub Actions for automated builds
+- **Dependencies**: Dependabot for security updates
+- **Monitoring**: Check build logs and deployment status
+
+## GitHub Best Practices
+
+### Repository Management
+- **Main Branch**: Use `main` as the primary branch
+- **Branch Naming**: Use descriptive names like `feature/story-animations`, `fix/audio-loading`, `docs/readme-update`
+- **Branch Protection**: Enable branch protection rules for `main`
+- **Issues**: Use GitHub Issues for bug tracking and feature requests
+- **Projects**: Use GitHub Projects for task management and milestones
+- **Releases**: Tag releases with semantic versioning (v1.0.0, v1.1.0, etc.)
+
+### Commit Message Guidelines
+Follow the Conventional Commits specification:
+
+#### Format
+```
+<type>[optional scope]: <description>
+
+[optional body]
+
+[optional footer(s)]
+```
+
+#### Types
+- **feat**: New feature for the user
+- **fix**: Bug fix for the user
+- **docs**: Documentation changes
+- **style**: Code style changes (formatting, missing semicolons, etc.)
+- **refactor**: Code refactoring without changing functionality
+- **perf**: Performance improvements
+- **test**: Adding or updating tests
+- **chore**: Maintenance tasks, dependency updates
+- **ci**: CI/CD pipeline changes
+- **build**: Build system or external dependencies
+
+#### Examples
+```
+feat(story): add new visual animation for chapter 5
+fix(audio): resolve audio loading error on mobile devices
+docs(readme): update installation instructions
+style(components): format code with prettier
+refactor(layout): simplify content centering logic
+perf(animations): optimize frame rate for mobile
+test(components): add unit tests for StoryScene
+chore(deps): update framer-motion to latest version
+ci(workflow): add automated accessibility testing
+build(config): update next.js configuration
+```
+
+#### Scope Guidelines
+- **story**: Story content and data changes
+- **components**: React component changes
+- **visuals**: Animation component changes
+- **layout**: Layout and styling changes
+- **audio**: Audio system changes
+- **accessibility**: Accessibility improvements
+- **performance**: Performance optimizations
+- **deps**: Dependency updates
+- **ci**: CI/CD changes
+- **docs**: Documentation changes
+
+#### Commit Message Rules
+- **Capitalize**: First letter of the description
+- **No Period**: Don't end description with a period
+- **Imperative Mood**: Use "add feature" not "added feature"
+- **50 Characters**: Keep description under 50 characters
+- **Body**: Use body for detailed explanation (72 characters per line)
+- **Breaking Changes**: Use `BREAKING CHANGE:` in footer for breaking changes
+
+#### Examples of Good Commit Messages
+```
+feat(story): add machine consciousness theme to chapter 8
+fix(audio): handle missing audio files gracefully
+docs(cursor): add GitHub best practices to rules
+style(components): center content blocks consistently
+refactor(visuals): simplify GlowPulse animation
+perf(animations): reduce CPU usage on mobile
+test(story): add integration tests for navigation
+chore(deps): update howler.js to v2.2.3
+ci(workflow): add performance monitoring
+build(config): optimize bundle size
+```
+
+#### Examples of Bad Commit Messages
+```
+❌ "fixed stuff"
+❌ "update"
+❌ "WIP"
+❌ "changes"
+❌ "fix bug"
+❌ "add feature"
+❌ "refactor"
+❌ "test"
+❌ "docs"
+❌ "style"
+```
+
+### Pull Request Guidelines
+- **Title**: Use same format as commit messages
+- **Description**: Include what changed and why
+- **Testing**: Describe how you tested the changes
+- **Screenshots**: Include screenshots for UI changes
+- **Breaking Changes**: Clearly mark any breaking changes
+- **Dependencies**: List any new dependencies or requirements
+- **Reviewers**: Request reviews from relevant team members
+- **Labels**: Use appropriate labels (bug, enhancement, documentation, etc.)
+
+### Issue Guidelines
+- **Title**: Clear, descriptive title
+- **Labels**: Use appropriate labels (bug, enhancement, question, etc.)
+- **Templates**: Use issue templates for consistency
+- **Milestones**: Assign to appropriate milestones
+- **Assignees**: Assign to relevant team members
+- **Description**: Include steps to reproduce for bugs
+- **Environment**: Specify browser, device, OS for bugs
+
+### Release Management
+- **Semantic Versioning**: Use MAJOR.MINOR.PATCH format
+- **Changelog**: Maintain a CHANGELOG.md file
+- **Release Notes**: Write clear release notes
+- **Tagging**: Tag releases with version numbers
+- **Assets**: Include built assets in releases
+- **Dependencies**: Update dependency versions
+
+### Security Best Practices
+- **Secrets**: Never commit API keys or secrets
+- **Dependencies**: Keep dependencies updated
+- **Vulnerabilities**: Monitor for security vulnerabilities
+- **Permissions**: Use least privilege principle
+- **Audit**: Regular security audits
+- **Reporting**: Use GitHub's security advisory features
+
+## Common Issues & Solutions
+- **Audio Loading**: Handle errors gracefully with try/catch
+- **Animation Performance**: Use `will-change` sparingly
+- **Mobile Layout**: Test on actual devices
+- **Accessibility**: Validate with axe-core
+- **Performance**: Monitor bundle size and loading times

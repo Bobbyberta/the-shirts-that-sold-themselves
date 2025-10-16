@@ -1,0 +1,307 @@
+# Coding Patterns & Best Practices
+
+## React Patterns
+```jsx
+// Component structure
+"use client";
+import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+
+export default function ComponentName({ prop1, prop2 }) {
+  const [state, setState] = useState(initialValue);
+  
+  useEffect(() => {
+    // Side effects
+    return () => {
+      // Cleanup
+    };
+  }, [dependencies]);
+
+  return (
+    <motion.div
+      className="tailwind-classes"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.5 }}
+    >
+      {/* Content */}
+    </motion.div>
+  );
+}
+```
+
+## Tailwind Patterns
+```jsx
+// Layout containers
+className="w-full max-w-6xl mx-auto px-4 lg:px-8 flex flex-col items-center"
+
+// Prose content
+className="w-full max-w-prose text-left"
+
+// Responsive text
+className="text-lg md:text-xl lg:text-2xl"
+
+// Responsive spacing
+className="px-4 lg:px-8 py-6 lg:py-8"
+
+// Animation classes
+className="transition-all duration-300 hover:scale-105"
+```
+
+## Framer Motion Patterns
+```jsx
+// Page transitions
+<AnimatePresence mode="wait">
+  <motion.div
+    key={currentId}
+    initial={{ opacity: 0, y: 50 }}
+    animate={{ opacity: 1, y: 0 }}
+    exit={{ opacity: 0, y: -50 }}
+    transition={{ duration: 1.2 }}
+  >
+    {/* Content */}
+  </motion.div>
+</AnimatePresence>
+
+// Staggered animations
+<motion.div
+  initial={{ opacity: 0 }}
+  animate={{ opacity: 1 }}
+  transition={{ delay: 0.3, duration: 1 }}
+>
+  {/* Content */}
+</motion.div>
+
+// Hover effects
+<motion.button
+  whileHover={{ scale: 1.05 }}
+  whileTap={{ scale: 0.95 }}
+  className="transition-all duration-300"
+>
+  Button
+</motion.button>
+```
+
+## Audio Patterns
+```jsx
+// Howler.js integration
+import { Howl } from "howler";
+
+const [currentAudio, setCurrentAudio] = useState(null);
+
+useEffect(() => {
+  if (audioFile && !isMuted) {
+    const sound = new Howl({
+      src: [`/audio/${audioFile}`],
+      loop: true,
+      volume: 0.15,
+      onloaderror: (id, error) => {
+        console.warn(`Audio load error:`, error);
+      }
+    });
+    
+    sound.play();
+    setCurrentAudio(sound);
+    
+    return () => {
+      sound.stop();
+    };
+  }
+}, [audioFile, isMuted]);
+```
+
+## State Management Patterns
+```jsx
+// Story navigation
+const [currentIndex, setCurrentIndex] = useState(0);
+const current = storySections[currentIndex];
+
+// Navigation functions
+const next = () => {
+  if (currentIndex + 1 < storySections.length) {
+    setCurrentIndex(prev => prev + 1);
+  }
+};
+
+const previous = () => {
+  if (currentIndex > 0) {
+    setCurrentIndex(prev => prev - 1);
+  }
+};
+```
+
+## Event Handling Patterns
+```jsx
+// Keyboard navigation
+useEffect(() => {
+  const handleKeyDown = (e) => {
+    if (e.key === "ArrowRight" || e.key === " ") {
+      e.preventDefault();
+      next();
+    } else if (e.key === "ArrowLeft") {
+      e.preventDefault();
+      previous();
+    }
+  };
+
+  window.addEventListener("keydown", handleKeyDown);
+  return () => window.removeEventListener("keydown", handleKeyDown);
+}, [currentIndex]);
+
+// Scroll navigation
+useEffect(() => {
+  const handleWheel = (e) => {
+    if (e.deltaY > 0) {
+      next();
+    } else if (e.deltaY < 0) {
+      previous();
+    }
+  };
+
+  window.addEventListener("wheel", handleWheel, { passive: true });
+  return () => window.removeEventListener("wheel", handleWheel);
+}, [currentIndex]);
+```
+
+## Error Handling Patterns
+```jsx
+// Audio error handling
+try {
+  const sound = new Howl({
+    src: [`/audio/${audioFile}`],
+    loop: true,
+    volume: 0.15,
+    onloaderror: (id, error) => {
+      console.warn(`Audio load error for ${audioFile}:`, error);
+    },
+    onplayerror: (id, error) => {
+      console.warn(`Audio play error for ${audioFile}:`, error);
+    }
+  });
+  sound.play();
+} catch (error) {
+  console.warn("Audio playback not available:", error);
+}
+
+// Component error boundaries
+if (!current) {
+  return <div>Loading...</div>;
+}
+```
+
+## Performance Patterns
+```jsx
+// Memoization for expensive calculations
+const memoizedValue = useMemo(() => {
+  return expensiveCalculation(data);
+}, [data]);
+
+// Callback memoization
+const handleClick = useCallback(() => {
+  // Handle click
+}, [dependency]);
+
+// Lazy loading
+const LazyComponent = lazy(() => import('./LazyComponent'));
+
+// Conditional rendering
+{showComponent && <Component />}
+```
+
+## Accessibility Patterns
+```jsx
+// ARIA labels
+<button
+  aria-label="Next story section"
+  onClick={next}
+>
+  Next
+</button>
+
+// Focus management
+useEffect(() => {
+  if (ref.current) {
+    ref.current.focus();
+  }
+}, [currentIndex]);
+
+// Screen reader support
+<div role="main" aria-live="polite">
+  {current.title}
+</div>
+
+// Keyboard navigation
+<button
+  tabIndex={0}
+  onKeyDown={(e) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      handleClick();
+    }
+  }}
+>
+  Click me
+</button>
+```
+
+## Testing Patterns
+```jsx
+// Component testing
+import { render, screen, fireEvent } from '@testing-library/react';
+import Component from './Component';
+
+test('renders component', () => {
+  render(<Component />);
+  expect(screen.getByText('Expected Text')).toBeInTheDocument();
+});
+
+// Event testing
+test('handles click events', () => {
+  const handleClick = jest.fn();
+  render(<Component onClick={handleClick} />);
+  fireEvent.click(screen.getByRole('button'));
+  expect(handleClick).toHaveBeenCalled();
+});
+```
+
+## Common Utilities
+```jsx
+// Debounce function
+const useDebounce = (value, delay) => {
+  const [debouncedValue, setDebouncedValue] = useState(value);
+
+  useEffect(() => {
+    const handler = setTimeout(() => {
+      setDebouncedValue(value);
+    }, delay);
+
+    return () => {
+      clearTimeout(handler);
+    };
+  }, [value, delay]);
+
+  return debouncedValue;
+};
+
+// Local storage hook
+const useLocalStorage = (key, initialValue) => {
+  const [storedValue, setStoredValue] = useState(() => {
+    try {
+      const item = window.localStorage.getItem(key);
+      return item ? JSON.parse(item) : initialValue;
+    } catch (error) {
+      return initialValue;
+    }
+  });
+
+  const setValue = (value) => {
+    try {
+      setStoredValue(value);
+      window.localStorage.setItem(key, JSON.stringify(value));
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  return [storedValue, setValue];
+};
+```

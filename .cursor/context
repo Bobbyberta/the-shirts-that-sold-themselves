@@ -1,0 +1,120 @@
+# Project Context for Cursor
+
+## Story Structure
+The story consists of 10 sections, each with:
+- **Title**: Poetic, descriptive heading
+- **Text**: Main story content (poetic prose)
+- **Visuals**: Animation component name (e.g., "weave-animation")
+- **Audio**: Sound file name (e.g., "machine_hum.mp3")
+- **Machine Logs**: Technical, robotic messages
+- **Theme Color**: Background color for each section
+
+## Visual Components
+Located in `/components/visuals/`:
+- **WeaveAnimation**: Cotton weaving pattern
+- **PulseAnimation**: Rhythmic pulsing effect
+- **StackingBoxes**: Warehouse boxes stacking
+- **DroneDelivery**: Drone delivery animation
+- **ConfettiGlitch**: Celebration/glitch effect
+- **RainAnimation**: Money laundering metaphor
+- **GreyClouds**: Auditors arriving
+- **GlowPulse**: Robot's confession (simplified blue pulse)
+- **SlowPan**: City overview
+- **FadeToWhite**: Story conclusion
+
+## Component Architecture
+- **StoryScene**: Main story container with navigation
+- **TitlePage**: Landing page with start button
+- **Credits**: End credits with restart options
+- **StoryInspiration**: Behind-the-scenes content
+- **SoundControl**: Audio management
+- **CursorTrail**: Interactive cursor effects
+
+## Data Structure
+Story sections are defined in `/data/storyData.js` as an array of objects:
+```javascript
+{
+  id: 1,
+  title: "The machines that dream in cotton",
+  text: "Story content...",
+  visuals: ["weave-animation"],
+  audio: "machine_hum.mp3",
+  machineLogs: ["[LOG_0001]: demand detected."],
+  themeColor: "#F5F3F0"
+}
+```
+
+## Layout System
+- **Container**: `max-w-6xl` for page width
+- **Content**: `max-w-prose` for optimal reading
+- **Padding**: `px-4 lg:px-8` for responsive spacing
+- **Alignment**: Centered containers with left-aligned text
+- **Typography**: Serif for story, monospace for logs
+
+## Animation Patterns
+- **Page Transitions**: Fade in/out with vertical movement
+- **Content Reveals**: Staggered opacity animations
+- **Interactive Elements**: Hover and tap animations
+- **Background Effects**: Continuous loops for atmosphere
+
+## Audio System
+- **Format**: MP3 files in `/public/audio/`
+- **Library**: Howler.js for cross-browser compatibility
+- **Volume**: Low ambient levels (0.15)
+- **Looping**: Continuous background audio
+- **Error Handling**: Graceful fallbacks for missing files
+
+## Responsive Breakpoints
+- **Mobile**: Default styles
+- **Tablet**: `md:` prefix (768px+)
+- **Desktop**: `lg:` prefix (1024px+)
+- **Large**: `xl:` prefix (1280px+)
+
+## Color Palette
+- **Backgrounds**: Theme-based colors from story data
+- **Text**: Gray-900 for headings, Gray-800 for body
+- **Accents**: Gray-600 for secondary text
+- **Borders**: Gray-300/400 for subtle elements
+- **Highlights**: A8E6CF (mint green) for special effects
+
+## Navigation System
+- **Keyboard**: Arrow keys, spacebar, enter
+- **Mouse**: Click buttons, scroll wheel
+- **Touch**: Tap interactions on mobile
+- **Accessibility**: Focus management and ARIA labels
+
+## Performance Optimizations
+- **Static Export**: Next.js static generation
+- **Image Optimization**: Next.js Image component
+- **Code Splitting**: Automatic with Next.js
+- **Bundle Analysis**: Monitor with webpack-bundle-analyzer
+- **Caching**: GitHub Pages CDN caching
+
+## Development Workflow
+- **Local Development**: `npm run dev`
+- **Build**: `npm run build`
+- **Export**: `npm run export`
+- **Lint**: `npm run lint`
+- **Deploy**: Automatic via GitHub Actions
+
+## Common Commands
+```bash
+npm run dev          # Start development server
+npm run build        # Build for production
+npm run export       # Export static files
+npm run lint         # Run ESLint
+npm run start        # Start production server
+```
+
+## File Naming Conventions
+- **Components**: PascalCase (e.g., `StoryScene.jsx`)
+- **Files**: kebab-case (e.g., `story-data.js`)
+- **Directories**: lowercase (e.g., `components/visuals/`)
+- **Assets**: descriptive names (e.g., `machine_hum.mp3`)
+
+## Git Workflow
+- **Main Branch**: `main` for production
+- **Feature Branches**: Descriptive names
+- **Commits**: Clear, descriptive messages
+- **PRs**: Include description and testing notes
+- **Releases**: Tagged versions for milestones
